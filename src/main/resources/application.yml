@@ -1,0 +1,33 @@
+server:
+  port: 80
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pms?serverTimezone=Asia/Kuala_Lumpur
+    username: root
+    password: 1234
+  redis: # Redis Configuration
+    host: 127.0.0.1 # IP Address
+    port: 6379 # Port Number
+    password: # Password
+    connect-timeout: 10s # Connection Timeout
+    lettuce: # Lettuce Redis Client Configuration
+      pool: # Pool Connection
+        max-active: 8 # Max Pool Connection (User Negative Value = No Limit) Default 8
+        max-wait: 200s # Max Timeout for Connection Pool (User Negative Value = No Limit) Default -1
+        max-idle: 8 # Max Connection Space (Default 8)
+        min-idle: 0 # Min Connection Space (Default 0)
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
